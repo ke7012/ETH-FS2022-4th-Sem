@@ -1,4 +1,4 @@
-##Introduction
+#Introduction
 
 ###Basic Concepts in Functional Programming
 Functions compute values but Functions can also be values. One basic concept in functional programming is that functions have no side effects. For example if $f(0) = 2$ then $f(0)+f(0) = 2+2 = 4$. This properity is called `referential transparency`.
