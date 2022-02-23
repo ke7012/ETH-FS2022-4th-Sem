@@ -1,6 +1,6 @@
-#Introduction
+# Introduction
 
-###Basic Concepts in Functional Programming
+### Basic Concepts in Functional Programming
 Functions compute values but Functions can also be values. One basic concept in functional programming is that functions have no side effects. For example if $f(0) = 2$ then $f(0)+f(0) = 2+2 = 4$. This properity is called `referential transparency`.
 
 Also recursion instead of iteration:
@@ -18,15 +18,15 @@ Also recursion instead of iteration:
         }
     }
 ```
-###Introduction to functional Programming
-####Expression Evaluations
+### Introduction to functional Programming
+#### Expression Evaluations
 There are two different types of evaluation strategies:
 - `Eager Evaluation` : also called "call by value" - evaluate arguments first i.e. the _green_ path in the picture
 - `Lazy Evaluation` : also called "call-by-need" - evaluate arguments only when needed (Haskell) i.e. the _blue_ path in the picture
 
 <img src = "./Images/Image_1.PNG" width="700px">
 
-###Syntax and Types
+### Syntax and Types
 `Functions and arguments start with lower-case letter`
 - Function consists of different cases and look like this in general
 
@@ -46,7 +46,7 @@ There are two different types of evaluation strategies:
 
     anotherFunction z1 ... zk = ...
 ```
-###2D Layout
+### 2D Layout
 Indentation determines seperation of definitions :
 - All function definitions must start at same indentation level
 - If a definition requires n > 1 lines, indent lines 2 to n further
@@ -62,7 +62,7 @@ Indentation determines seperation of definitions :
 ```
 > Spaces are important. **Do not use TABs**
 
-###Types
+### Types
 **Integers** :
 - Int $\in \{-2^{29}, ..., 2^{29}-1\}$ 
 - Functions : $+, *, \^, -, \text{div}, \text{mod}, \text{abs}$ - `? mod 7 2` 
