@@ -105,7 +105,7 @@ Used to model composite objects ("records"). Tuples are represented in `()` brac
     studentNumber (s, id, y) = id
     year (s, id, y) = y
 ``` 
-###Patterns and function Definition
+### Patterns and function Definition
 Functions definition are built from both patterns `mi` and guards `gi`
 ```haskell
     fun m1 m2 ... mn
