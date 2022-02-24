@@ -44,8 +44,10 @@ Also recursion instead of iteration:
 There are two different types of evaluation strategies:
 - `Eager Evaluation` : also called "call by value" - evaluate arguments first i.e. the _green_ path in the picture
 - `Lazy Evaluation` : also called "call-by-need" - evaluate arguments only when needed (Haskell) i.e. the _blue_ path in the picture
-
-<img src = "./Images/Image_1.PNG" width="700px">
+- 
+<p align="center">
+    <img src = "./Images/Image_1.PNG" width="700px">
+</p>
 
 ## 2.2. Syntax and Types
 `Functions and arguments start with lower-case letter`
@@ -204,7 +206,9 @@ $$
 $$
 
 The proof can be displayed as a Derivation Tree in Prawitz style:
-<img src= "./Images/Image_2.PNG" width="350px">
+<p align="center">
+    <img src= "./Images/Image_2.PNG" width="350px">
+</p>
 
 By changing our system a little bit we get :
 - Language: $\mathcal{L} = \{\bigoplus, \bigotimes, \times, + \}$
@@ -230,7 +234,9 @@ The $\Gamma$ stands for some assumptions here in our case it would be assuming "
 
 The deriviation tree in Gentzen Style now :
 
-<img src = "./Images/Image_3.PNG" width="350px">
+<p align="center">
+    <img src = "./Images/Image_3.PNG" width="350px">
+</p>
 
 ## 3.2. Propositional Logic
 
