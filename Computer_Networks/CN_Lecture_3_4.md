@@ -166,4 +166,172 @@ Additional readings for DNS :
 - 1.4 Delay, Loss and throughput in packet switched networks
 - 1.7 DNS - The internet's directory service
 
-## WEB 
+## The WEB 
+
+### Components
+The World Wide Web is made of three key components
+
+<p align = "center">
+    <img src = "./Images/Image_19.PNG" width = "700px">
+</p>
+
+We will focus on its implementation
+
+### URL - name content
+A `Uniform Resource Locator` (URL) refers to an Internet resource where
+<p align = "center">
+    protocol://hostname[:port]/directory_path/resource
+</p> 
+
+- protocol : HTTP(S), FTP, SMTP
+- hostname : DNS NAME, IP address
+- :port : default to protocol's standard e.g. HTTP:80, HTTPS:443
+- directory_path/resource : identify the resource on the destination
+
+### HTTP (Hypertext Transfer Protocol) - transport content
+`HTTP` is a rather simple. It's a synchronous request-response protocol
+- HTTP is layered over a bidirectional byte stream. currently TCP, HTTP/3 only QUIC
+- HTTP is text-based (ASCII) - human readable, easy to reason about
+- HTTP is stateless - it maintains no info about past client requests
+
+### HTTP - Protocol
+HTTP clients make requests to servers
+<p align = "center">
+    <img src = "./Images/Image_20.PNG" width = "500px">
+</p>
+
+We look at the first line : 
+<p align = "center">
+    <img src = "./Images/Image_21.PNG" width = "500px">
+</p>
+
+The following **request headers** are of variable lengths but still human readable. Its uses consist of :
+- Authorization Info
+- Acceptable document types/encoding
+- From (user email)
+- If-Modified-Since
+- Referrer (causes of the request)
+- User Agent (client software)
+
+HTTP servers then answer clients' request
+<p align = "center">
+    <img src = "./Images/Image_22.PNG" width = "500px">
+</p>
+
+Again, the first line :
+<p align = "center">
+    <img src = "./Images/Image_23.PNG" width = "500px">
+</p>
+
+Like request headers, **response headers** are of variable lengths and human-readable. It's uses consist of :
+- Location (for redirection)
+- Allow (list of methods supported)
+- Content encoding (e.g., gzip)
+- Content-Length
+- Content-Type
+- Expires (caching)
+- Last-Modified (caching
+
+---
+
+HTTP is a stateless protocol, meaning each request is treated independently. 
+
+Advantages are :
+- server-side scalability
+- failure handling is trivial
+  
+Disadvantages  are : 
+- some applications need state e.g. shopping cart, user profiles, tracking etc.
+
+HTTP makes the client maintain the state since it's a stateless protocol. This is what the so-called **cookies** are for.
+- Client stores small state (on behalf of the server X)
+- Client sends state in all future requests to X
+- can provide authentication
+
+### HTTP Performance
+
+#### Dependencies
+Let's take a look at a simple page : 
+<p align = "center">
+    <img src = "./Images/Image_24.PNG" width = "700px">
+</p>
+We can see that there are 3 dependencies in the body block. The browser has to be conservative, therefore introduces blocking, unless it is clear that two resources are independent.
+
+#### Complexity
+
+Today, the average webpage size is 2.3 MB as much as the original DOOM game. Needless ot say the complexitiy may even increase more in the near future.
+
+#### Dependency Graph
+
+Consider the example from before. We can draw a dependency graph from it. Note that the lenght of the bars is no longer meaningful
+<p align = "center">
+    <img src = "./Images/Image_25.PNG" width = "700px">
+</p>
+
+Now to be able to somewhat improve that delay we have to find the critical path of that graph.
+1. First, sort the nodes using a topological sort 
+2. Process tasks in reverse-sort order 
+3. Each task’s finish time is max over tasks it depends on
+
+<p align = "center">
+    <img src = "./Images/Image_26.PNG" width = "700px">
+</p>
+
+- Nodes are indiviudal tasks
+- Edges indicate a "must happen before" relationship
+- Edges are annotated with costs i.e. the time it takes for the task
+
+Speeding up any task on the critical path will 
+- speed up the end-to-end process or / and
+- expose a different critical path
+
+### Speeding up Web browsing
+---
+
+Disclaimer : Honestly, in my opinion absolute irrelevant so yeah don't take it so seriously.
+
+---
+
+Here are a few possibilites to speed up Web browsing :
+- Simplify, restructure, redesign Web pages
+- Use faster computing devices
+- Increase network bandwidth
+- Make network RTTs smaller
+- Simplify network protocols
+- Caching & replication
+
+---
+
+**Simplify, restructure, redesign Web pages**
+- Compress using gzip and more efficient image codecs like WebP
+- In-Line JSS, CSS
+- Tag "async" resources  (explicitly identifiying lack of dependencies)
+
+**Simplify network protocols**
+
+Relying on TCP (Transmission Control Protocol) forces an HTTP client to open a connection before exchanging anything.
+
+Most Web pages have multiple objects, naive HTTP opens one TCP connection for each.
+- One solution to that problem is to use **multiple TCP connections** in parallel
+- Another solution is to use persistent connections across multiple requests, **default in HTTP/1.1**
+  - Avoid overhead of connection set-up and teardown - clients or servers can tear down the connection
+  - Allow TCP to learn more accurate RTT (round-trip time) estimate - and with it, more precise timeout value
+  - Allow TCP congestion window to increase - and therefore to leverage higher bandwidth
+- Yet another solution is to **pipeline** requests & replies **asynchronously**
+
+**Caching & replication**
+
+Caching leverages the fact that highly popular content largely overlaps. i.e. if you're on youtube a lot, think how many times you'd have to requeset the youtube logo a day.
+
+Caching saves time for your browser and decreases network and server load.
+
+Caching can and is performed at different locations
+- client : browser cache
+- close to the internet : forward proxy, Content Distribution Network (CDN)
+- close to the desination : reverse proxy
+
+Many clients request the same information. This increases servers and network’s load, while clients experience unnecessary delays.
+- **Reverse proxies** cache documents **close to servers**, decreasing their load.
+- **Forward proxies** cache documents **close to clients**, decreasing network traffic, server load and latencies 
+
+
