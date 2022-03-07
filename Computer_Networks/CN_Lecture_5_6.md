@@ -308,7 +308,7 @@ We'll be taking a look at two sliding window implementations :
 **Sender** : 
 - use a *single timer* to detect loss, reset at each ACK
 - upon timeout, resend all W packets starting with the lost one
-- 
+
 Note that : When the sender concluded that some packet K was lost then all the PACKETS are resent upto PACKET K at the same time.
 
 #### Selective Repeat (SR)
@@ -325,3 +325,8 @@ Note that : When the sender concluded that some packet K was lost then all the P
 **Sender** : 
 - use per-packet timer to detect loss
 - upon loss, only resend the lost packet (NOT THE ACK like in GBN)
+
+
+---
+
+Here is a [link](http://www.ccs-labs.org/teaching/rn/animations/gbn_sr/) for a visualization of GBN and SR. 
