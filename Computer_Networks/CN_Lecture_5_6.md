@@ -61,9 +61,11 @@ We'll take a closer look into the **Network Layer**. We can group the following 
   
 - Not overloading the network (`congestion control`)
 
+
 ## How do we build reliable transport?
 
 Sending Packets / Messages through the internet isn't smooth sailing. The internet is an unreliable environment. Packets can get **lost**, **corrupted**, **reordered** or **duplicated**. 
+
 
 ### The four goals of reliable transfer
 
@@ -84,6 +86,7 @@ There are certain problems with this "implementation".
 2. Checking if ACK doesnt necessarily mean its the right ACK
 3. receiver only checks if WORD is delivered or not, it could be that there are 2 packets with the same content.
 
+
 ### Reliable Transport - Correctness Condition
 
 We want a crisp, formal translation of the correctness goal, namely : 
@@ -95,7 +98,9 @@ A packet **is always resent if** the previous packet was lost or corrupted. (A p
 - Necessary : if it ever let a packet go undelivered without resending it, it isn’t reliable
 - Note : it is ok to give up after a while but must announce it to the application
 
+
 ### Reliable Transport - Design Space
+
 
 #### Design Space - for Packet Loss
 
@@ -149,6 +154,7 @@ The **efficiency** of our protocol depends on receiver feedback and how the send
 
 **Large timer: low timeliness, high efficiency**
 **Short timer or pure ACK-based retransmission: high timeliness, low efficiency**
+
 
 #### Encoding/Decoding ACK's
 
@@ -210,6 +216,7 @@ Full Information ACKs prevent unnecessary retransmissions, but incur a sizable *
 
 **Disadvantages** : overhead - lowering efficiency e.g., when large gaps between received packets
 
+
 #### What about Fairness?
 
 <p align = "center">
@@ -243,6 +250,7 @@ Max-min fair allocation can be approximated by slowly increasing *W* = window si
 2. Whenever a loss is detected, decrease the window size (signal of congestion)
 3. repeat
 
+
 #### Design Space - corruption
 
 Dealing with corruption is easy: Rely on a `checksum`, treat corrupted packets as lost.
@@ -260,8 +268,10 @@ The effect of reordering depends on the type of *ACKing mechanism* used
     <img src = "./Images/Image_35.PNG" width = "700px" >
 </p>
 
+
 #### Design Space - delays
 Long delays can create useless timeouts, **for all designs**
+
 
 #### Design Space - duplicates
 Packet duplicates can lead to duplicate ACKs whose effects will depend on the ACKing mechanism used.
@@ -294,6 +304,7 @@ After Looking at all these problems we can set up one correct, timely, efficient
 
 We'll be taking a look at two sliding window implementations :
 
+
 #### Go-Back-N GBN
 
 `Go-Back-N (GBN)` is a simple sliding window protocol using cumulative ACKs
@@ -310,6 +321,7 @@ We'll be taking a look at two sliding window implementations :
 - upon timeout, resend all W packets starting with the lost one
 
 Note that : When the sender concluded that some packet K was lost then all the PACKETS are resent upto PACKET K at the same time.
+
 
 #### Selective Repeat (SR)
 
