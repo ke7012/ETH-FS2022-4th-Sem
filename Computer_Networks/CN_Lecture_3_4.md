@@ -1,5 +1,21 @@
 # Applications - DNS, WEB, Video
 
+- [Applications - DNS, WEB, Video](#applications---dns-web-video)
+  - [DNS - Domain Name Service](#dns---domain-name-service)
+    - [IP and Domain Names](#ip-and-domain-names)
+    - [DNS Hierarchies](#dns-hierarchies)
+    - [DNS Queries and Components](#dns-queries-and-components)
+  - [The WEB](#the-web)
+    - [Components](#components)
+    - [URL - name content](#url---name-content)
+    - [HTTP (Hypertext Transfer Protocol) - transport content](#http-hypertext-transfer-protocol---transport-content)
+    - [HTTP - Protocol](#http---protocol)
+    - [HTTP Performance](#http-performance)
+      - [Dependencies](#dependencies)
+      - [Complexity](#complexity)
+      - [Dependency Graph](#dependency-graph)
+  - [### Speeding up Web browsing](#-speeding-up-web-browsing)
+
 ## DNS - Domain Name Service
 
 The internet has one **global system** for 
