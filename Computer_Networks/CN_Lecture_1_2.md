@@ -1,5 +1,17 @@
 # Overview
-Honestly this does not seem all too relevant to me. I suppose it's purpose is to introduce students to the topic.
+
+- [Overview](#overview)
+  - [What is a network made of?](#what-is-a-network-made-of)
+    - [Access Technologies](#access-technologies)
+  - [How is the network shared?](#how-is-the-network-shared)
+  - [How does communication happen ?](#how-does-communication-happen-)
+    - [The end-end principle](#the-end-end-principle)
+    - [Fate-sharing Principle](#fate-sharing-principle)
+  - [How do we characterize network?](#how-do-we-characterize-network)
+    - [Sources of network delays](#sources-of-network-delays)
+    - [Why does delay matter?](#why-does-delay-matter)
+    - [Packet Losses - What are Internet delays like?](#packet-losses---what-are-internet-delays-like)
+    - [Throughput](#throughput)
 
 ## What is a network made of?
 Networks are composed of three basic components :
